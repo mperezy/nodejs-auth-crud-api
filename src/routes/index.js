@@ -55,7 +55,7 @@ function isAuthenticated(req, res, next) {
 router.post('/add', async (req, res) => {
     const task = new Task(req.body);
     await task.save();
-    res.redirect('/');
+    res.redirect('/dashboard');
 });
 
 router.get('/turn/:id', async (req, res, next) => {

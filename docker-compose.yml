@@ -3,7 +3,6 @@ version: '2'
 services:
   apinodejs:
     hostname: apinodejs
-    #image: owncloudci/nodejs
     build: .
     container_name: apinodejs
     working_dir: /app
