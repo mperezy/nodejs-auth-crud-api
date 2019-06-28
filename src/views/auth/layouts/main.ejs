@@ -2,63 +2,107 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Nodejs Passport Local</title>
+        <title>Nodejs - Mongo : Login - CRUD</title>
+        <link rel="stylesheet" href="css/floating-labels.css">
+        <link rel="stylesheet" href="css/navbar.css">
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     </head>
     <body class="d-flex flex-column h-100">
         <header>
-            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark mb-4">
                 <a class="navbar-brand" href="#">Login-CRUD-Nodejs</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav mr-auto">
+                        <% if(title == 'index') { %>
                         <li class="nav-item active">
-                            <a class="nav-link" href="@routes.Application.showDashboard()">Home <span class="sr-only">(current)</span></a>
+                        <% } else { %>
+                        <li class="nav-item">
+                        <% } %>
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/dashboard">Dashboard</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link disabled" href="#">Disabled</a>
                         </li>
                     </ul>
 
-                    <% if(user){ %>
+                    <% if(user) { %>
                     <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
                         <li class="nav-item dropdown">
                             <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <%= user.email %>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-versions">
-                                <a class="dropdown-item" href="/">Profile</a>
+                                <a class="dropdown-item" href="/profile">Profile</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="/logout">Logout</a>
                             </div>
+                        </li>
+                    </ul>
+                    <% } else { %>
+                    <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+                        <% if(title == 'signin') { %>
+                        <li class="nav-item active">
+                        <% } else { %>
+                        <li class="nav-item">
+                        <% } %>
+                            <a class="nav-link" href="/signin">SignIn</a>
+                        </li>
+                        <% if(title == 'signup') { %>
+                        <li class="nav-item active">
+                        <% } else { %>
+                        <li class="nav-item">
+                        <% } %>
+                            <a class="nav-link" href="/signup">SignUp</a>
                         </li>
                     </ul>
                     <% } %>
                 </div>
             </nav>
         </header>
-        <br><br><br><br>
-        <!-- NAVIGATION -->
-        <% if (!user) { %>
-            <a href="/signin">Signin</a>
-            <a href="/signup">Signup</a>
-        <% } else { %>
-            <a href="/logout">Logout</a>
-            <a href="/profile">Profle</a>
-            <a href="/dashboard">Dashboard</a>
-        <% } %>
+            <% if (signinMessage.isEmpty) { %>
+            <div class="alert alert-danger">
+                <%= signinMessage %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <% } %>
+            <%if (signupMessage.isEmpty) { %>
+            <div class="alert alert-danger">
+                <%= signupMessage %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <% } %>
 
-        <%if (signinMessage) {%>
-            <p><%= signinMessage %></p>
-        <% } %>
-        <%if (signupMessage) {%>
-            <p><%= signupMessage %></p>
-        <% } %>
+            <% if(title == 'index') { %>
+                <br><br><br>
+                <div class="container">
+                    <div class="jumbotron">
+                        <h1>Home</h1>
+                        <p class="lead">This is a simple example of Login - CRUD using <code>Nodejs</code> and <code>MongoDB</code>.</p>
+                        <a id="simpleButton" class="btn btn-lg btn-primary" href="#" role="button">Simple Button</a>
+                    </div>
+                </div>
+            <% } %>
 
         <%- body %>
+        <script type="text/javascript">
+            var simpleButton = $('#simpleButton');
+
+            simpleButton.click((e) => {
+                console.log(e);
+                alert("Hello world");
+            });
+        </script>
     </body>
 </html>
