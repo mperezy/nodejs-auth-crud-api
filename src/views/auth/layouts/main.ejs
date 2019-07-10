@@ -42,8 +42,10 @@
                                 <%= user.email %>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-versions">
+                                <% if(title != 'profile') { %>
                                 <a class="dropdown-item" href="/profile">Profile</a>
                                 <div class="dropdown-divider"></div>
+                                <% } %>
                                 <a class="dropdown-item" href="/logout">Logout</a>
                             </div>
                         </li>

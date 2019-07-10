@@ -1,6 +1,27 @@
 <%- layout('auth/layouts/main') %>
 
-<br><br><br><br>
-<p>UserId: <%= user._id%></p>
-<p>UserMail: <%= user.email %></p>
-<p>UserPass: <%= user.password %></p>
+<div class="form-signin">
+    <div class="text-center mb-4">
+        <img src="img/profile-icon.png" alt="" width="200" class="mb-4">
+        <h1 class="h3 mb-3 font-weight-normal">NodeJs Authentication - Profile</h1>
+    </div>
+
+    <div class="form-group">
+        <label for="email" class="col-sm-2 col-form-label">ID</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text"><span class="oi oi-person"></span></div>
+            </div>
+            <input id="email" name="email" value="<%= user._id %>" class="form-control" disabled type="text" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="password" class="col-sm-2 col-form-label">Email</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text"><span class="oi oi-envelope-closed"></span></div>
+            </div>
+            <input id="password" name="password" value="<%= user.email%>" class="form-control" disabled type="email" required>
+        </div>
+    </div>
+</div>
