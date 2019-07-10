@@ -1,19 +1,27 @@
 <%- layout('auth/layouts/main')%>
+
 <form class="form-signin" action="/signup" method="POST">
+    <div class="text-center mb-4">
+        <img src="img/nodejs.jpg" alt="" width="200" class="mb-4">
+        <h1 class="h3 mb-3 font-weight-normal">NodeJs Authentication - Sign Up</h1>
+    </div>
+
+    <% include layouts/flash %>
+
     <div class="form-group">
         <label for="email" class="col-sm-2 col-form-label">Email</label>
         <div class="input-group">
             <div class="input-group-prepend">
-                <div class="input-group-text"><span class="oi oi-email"></span></div>
+                <div class="input-group-text"><span class="oi oi-envelope-closed"></span></div>
             </div>
-            <input id="email" name=email" value="" class="form-control" placeholder="Type your email" type="email" required>
+            <input id="email" name="email" value="" class="form-control" placeholder="Type your email" type="email" required>
         </div>
     </div>
     <div class="form-group">
         <label for="password" class="col-sm-2 col-form-label">Password</label>
         <div class="input-group">
             <div class="input-group-prepend">
-                <div class="input-group-text"><span class="oi oi-password"></span></div>
+                <div class="input-group-text"><span class="oi oi-key"></span></div>
             </div>
             <input id="password" name="password" value="" class="form-control" placeholder="Type your password" type="password" required>
         </div>
