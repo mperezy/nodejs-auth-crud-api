@@ -1,12 +1,47 @@
 <%- layout('auth/layouts/main')%>
 
-<form class="form-signin" action="/signup" method="POST">
+<br><br><br>
+<form class="form-signin" action="/signup" role="form" method="POST">
     <div class="text-center mb-4">
         <img src="img/nodejs.jpg" alt="" width="200" class="mb-4">
         <h1 class="h3 mb-3 font-weight-normal">NodeJs Authentication - Sign Up</h1>
     </div>
 
     <% include layouts/flash %>
+
+    <div class="form-group">
+        <label for="firstname" class="col-sm-2 col-form-label">First Name</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text"><span class="oi oi-person"></span></div>
+            </div>
+            <input id="firstname" name="firstname" value="" class="form-control" placeholder="Type your firs tname" type="text" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="lastname" class="col-sm-2 col-form-label">Last Name</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text"><span class="oi oi-person"></span></div>
+            </div>
+            <input id="lastname" name="lastname" value="" class="form-control" placeholder="Type your last name" type="text" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="role" class="col-sm-2 col-form-label">Role</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text"><span class="oi oi-tag"></span></div>
+            </div>
+            <select id="role" name="role" class="form-control" required>
+                <option selected disabled>Select one</option>
+                <option>Administrator</option>
+                <option>Simple user</option>
+            </select>
+        </div>
+    </div>
 
     <div class="form-group">
         <label for="email" class="col-sm-2 col-form-label">Email</label>
@@ -17,6 +52,7 @@
             <input id="email" name="email" value="" class="form-control" placeholder="Type your email" type="email" required>
         </div>
     </div>
+
     <div class="form-group">
         <label for="password" class="col-sm-2 col-form-label">Password</label>
         <div class="input-group">
@@ -25,6 +61,22 @@
             </div>
             <input id="password" name="password" value="" class="form-control" placeholder="Type your password" type="password" required>
         </div>
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
+
+    <div class="form-group">
+        <label for="passwordconfirm" class="col-sm-4 col-form-label">Confirm Password</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text"><span class="oi oi-key"></span></div>
+            </div>
+            <input id="passwordconfirm" name="passwordconfirm" value="" class="form-control" placeholder="Re-type your password" type="password" required>
+        </div>
+        <small id="emailHelp" class="form-text text-muted">Just want to confirm that you're entering your password in the correct way.</small>
+    </div>
+
+    <br>
+    <br>
+
     <button class="btn btn-lg btn-primary btn-block">SignUp</button>
 </form>

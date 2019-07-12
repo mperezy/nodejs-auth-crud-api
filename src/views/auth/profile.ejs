@@ -7,21 +7,52 @@
     </div>
 
     <div class="form-group">
-        <label for="email" class="col-sm-2 col-form-label">ID</label>
+        <label for="email" class="col-sm-2 col-form-label">User ID</label>
         <div class="input-group">
             <div class="input-group-prepend">
-                <div class="input-group-text"><span class="oi oi-person"></span></div>
+                <div class="input-group-text"><span class="oi oi-shield"></span></div>
             </div>
             <input id="email" name="email" value="<%= user._id %>" class="form-control" disabled type="text" required>
         </div>
     </div>
+
     <div class="form-group">
-        <label for="password" class="col-sm-2 col-form-label">Email</label>
+        <label for="firstname" class="col-sm-2 col-form-label">First Name</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text"><span class="oi oi-person"></span></div>
+            </div>
+            <input id="firstname" name="firstname" value="<%= user.firstname %>" class="form-control" disabled type="text" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="lastname" class="col-sm-2 col-form-label">Last Name</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text"><span class="oi oi-person"></span></div>
+            </div>
+            <input id="lastname" name="lastname" value="<%= user.lastname %>" class="form-control" disabled type="text" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="email" class="col-sm-2 col-form-label">Email</label>
         <div class="input-group">
             <div class="input-group-prepend">
                 <div class="input-group-text"><span class="oi oi-envelope-closed"></span></div>
             </div>
-            <input id="password" name="password" value="<%= user.email%>" class="form-control" disabled type="email" required>
+            <input id="email" name="email" value="<%= user.email %>" class="form-control" disabled type="email" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="role" class="col-sm-2 col-form-label">Role</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text"><span class="oi oi-tag"></span></div>
+            </div>
+            <input id="role" name="role" value="<%= user.role %>" class="form-control" disabled type="text" required>
         </div>
     </div>
 </div>

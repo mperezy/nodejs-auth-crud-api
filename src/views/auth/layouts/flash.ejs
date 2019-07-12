@@ -1,14 +1,18 @@
-<% if (signinMessage.length > 0) {
-        var flashClass = "";
+<% var flashClass = ""; %>
 
-        if(signinMessage == 'No user found!!') {
-            flashClass = 'info';
-        }
-        else {
-            flashClass = 'danger';
-        }
+<% if (signinMessage.length > 0) {
+
+    if(signinMessage == 'No user found!!') {
+        flashClass = 'info';
+    }
+    else if(signinMessage == 'You logged in successfully!!') {
+        flashClass = 'success';
+    }
+    else {
+        flashClass = 'danger';
+    }
 %>
-    <div class="alert alert-<%= flashClass %>" style="margin-top: 5%">
+    <div class="alert alert-<%= flashClass %>">
         <%= signinMessage %>
         <button type="button" class="close" data-dismiss="alert" aria-label="close">
             <span aria-hidden="true">&times;</span>
@@ -16,8 +20,16 @@
     </div>
 <% } %>
 
-<% if (signupMessage.length > 0) { %>
-    <div class="alert alert-danger" style="margin-top: 5%">
+<% if (signupMessage.length > 0) {
+
+    if(signupMessage == 'Your user was successfully created!!') {
+        flashClass = 'success';
+    }
+    else {
+        flashClass = 'danger';
+    }
+%>
+    <div class="alert alert-<%= flashClass %>">
         <%= signupMessage %>
         <button type="button" class="close" data-dismiss="alert" aria-label="close">
             <span aria-hidden="true">&times;</span>

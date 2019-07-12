@@ -18,20 +18,26 @@ passport.use('local-signup', new LocalStrategy({
     passReqToCallback: true
 }, async (req, email, password, done) => {
     const user = await User.findOne({ 'email': email });
-    console.log(`The user who is trying to register is: ${user}`);
+    console.log(`The user who is trying to register, ${ user == null ? "doesn't exists" : 'exists!!' }`);
 
     if(user) {
         return done(null, false, req.flash('signupMessage', 'The Email is already taken!!'));
     }
-    else {
+    else if(password === req.param('passwordconfirm').toString()){
         const newUser = new User();
+        newUser.firstname = req.param('firstname');
+        newUser.lastname = req.param('lastname');
+        newUser.role = req.param('role');
         newUser.email = email;
         newUser.password = newUser.encryptPassword(password);
 
         console.log(`New User: ${newUser}`);
 
         await newUser.save();
-        done(null, newUser);
+        done(null, newUser, req.flash('signupMessage', "Your user was successfully created!!"));
+    }
+    else {
+        return done(null, false, req.flash('signupMessage', "The password doesn't match!!"));
     }
 }));
 
@@ -48,5 +54,5 @@ passport.use('local-signin', new LocalStrategy({
     if(!user.comparePassword(password)) {
         return done(null, false, req.flash('signinMessage', 'Incorrect password!!'));
     }
-    return done(null, user);
+    return done(null, user, req.flash('signinMessage', "You logged in successfully!!"));
 }));
