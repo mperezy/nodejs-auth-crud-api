@@ -44,8 +44,8 @@
                                 <td><%= tasks[i].description %></td>
                                 <td>
                                     <a class="<%= tasks[i].status ? 'btn btn-success' : 'btn btn-dark'%>" href="/turn/<%= tasks[i]._id %>">Done</a>
-                                    <a href="/delete/<%= tasks[i]._id %>" class="btn btn-danger">Delete</a>
-                                    <a href="/edit/<%= tasks[i]._id %>" class="btn btn-info">Edit</a>
+                                    <button class="btn btn-danger deleteButton" data-delete="/delete/<%= tasks[i]._id %>">Delete</button>
+                                    <button class="btn btn-info editButton" data-task="<%= tasks[i]._id %>#<%= tasks[i].title %>#<%= tasks[i].description %>" data-action="/edit/">Edit</button>
                                 </td>
                             </tr>
                         <% } %>
@@ -53,6 +53,8 @@
                     </tbody>
                 </table>
             </div>
+
+            <% include partials/modal %>
         </div>
     </div>
 </main>
