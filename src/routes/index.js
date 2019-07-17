@@ -54,7 +54,8 @@ router.get('/logout', (req, res, next) => {
 
 // crud routes
 router.get('/dashboard', isAuthenticated, async (req, res) => {
-    const tasks = await Task.find();
+    const tasks = await Task.find({ 'userId': req.user._id });
+
     res.render('index', {
         tasks,
         title: 'dashboard'

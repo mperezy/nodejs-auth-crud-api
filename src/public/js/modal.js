@@ -1,8 +1,7 @@
 $(document).ready(() => {
     let editButton = $(".editButton");
     let deleteButton = $(".deleteButton");
-    let action = "";
-    let task = "";
+    let { action, task } = "";
 
     //edit
     let editModal = $("#editModal");

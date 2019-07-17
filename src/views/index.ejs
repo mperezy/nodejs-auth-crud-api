@@ -2,6 +2,14 @@
 
 <main role="main" class="flex-shrink-0">
     <% include ./auth/layouts/flash %>
+
+    <div class="container">
+        <h1 class="mt-5">Hello there <b><%= user.firstname %>!!</b></h1>
+        <p class="lead">Welcome to the dashboard page, please follow your tasks or if you don't have any one yet, create one!!</p>
+        <p>The source code of this little project is available  <a href="https://github.com/mperezy/nodejs-auth-crud-api" target="_blank">here</a> </p>
+        <br>
+    </div>
+
     <div class="container">
         <div class="row">
             <!--FORM-->
@@ -37,18 +45,16 @@
                     </thead>
                     <tbody>
                     <% for(var i = 0; i < tasks.length; i++) { %>
-                        <% if(tasks[i].userId == user._id) { %>
-                            <tr>
-                                <td><%= i + 1 %></td>
-                                <td><strong><%= tasks[i].title %></strong></td>
-                                <td><%= tasks[i].description %></td>
-                                <td>
-                                    <a class="<%= tasks[i].status ? 'btn btn-success' : 'btn btn-dark'%>" href="/turn/<%= tasks[i]._id %>">Done</a>
-                                    <button class="btn btn-danger deleteButton" data-delete="/delete/<%= tasks[i]._id %>">Delete</button>
-                                    <button class="btn btn-info editButton" data-task="<%= tasks[i]._id %>#<%= tasks[i].title %>#<%= tasks[i].description %>" data-action="/edit/">Edit</button>
-                                </td>
-                            </tr>
-                        <% } %>
+                        <tr>
+                            <td><%= i + 1 %></td>
+                            <td><strong><%= tasks[i].title %></strong></td>
+                            <td><%= tasks[i].description %></td>
+                            <td>
+                                <a class="<%= tasks[i].status ? 'btn btn-success' : 'btn btn-dark'%>" href="/turn/<%= tasks[i]._id %>">Done</a>
+                                <button class="btn btn-danger deleteButton" data-delete="/delete/<%= tasks[i]._id %>">Delete</button>
+                                <button class="btn btn-info editButton" data-task="<%= tasks[i]._id %>#<%= tasks[i].title %>#<%= tasks[i].description %>" data-action="/edit/">Edit</button>
+                            </td>
+                        </tr>
                     <% } %>
                     </tbody>
                 </table>
