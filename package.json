@@ -13,14 +13,23 @@
     "mongoose": "^5.6.1",
     "morgan": "^1.9.1",
     "passport": "^0.4.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-engine": "^4.5.1",
+    "react-router-dom": "^5.1.2",
+    "reactstrap": "^8.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.6.2",
+    "@babel/node": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "@babel/preset-react": "^7.0.0",
     "nodemon": "^1.19.1"
   },
   "scripts": {
-    "dev": "nodemon ./src/app.js",
-    "start": "node ./src/app.js"
+    "dev": "nodemon --exec babel-node ./src/app.js",
+    "start": "babel-node ./src/app.js"
   },
   "author": "Manuel Pérez",
   "license": "ISC"

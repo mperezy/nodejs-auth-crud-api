@@ -1,7 +1,8 @@
-const express = require('express');
+import express from 'express';
+import passport from 'passport';
+import Task from '../model/task';
+
 const router = express.Router();
-const passport = require('passport');
-const Task = require('../model/task');
 
 function isAuthenticated(req, res, next) {
     if(req.isAuthenticated()) {
@@ -12,8 +13,9 @@ function isAuthenticated(req, res, next) {
 
 // auth routes
 router.get('/', (req, res, next) => {
-    res.render('auth/index', {
-        title: 'index'
+    res.render('', {
+        title: 'index',
+        user: req.user
     });
 });
 

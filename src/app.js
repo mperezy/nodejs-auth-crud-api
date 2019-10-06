@@ -1,29 +1,33 @@
-const path = require('path');
-const engine = require('ejs-mate');
-const express = require('express');
-const morgan = require('morgan');
+// depedencies
+import path from 'path';
+import express from 'express';
+import morgan from 'morgan';
+import engine from 'react-engine';
 
-//login
-const flash = require('connect-flash');
-const session = require('express-session');
-const passport = require('passport');
+// login
+import flash from 'connect-flash';
+import session from 'express-session';
+import passport from 'passport';
+
+// routes
+import routes from './routes/index';
+
+// database connection
+import './database';
+import './passport/local-auth';
 
 const app = express();
 
-// database connection
-require('./database');
-require('./passport/local-auth');
-
-// routes
-const routes = require('./routes/index');
-
-// server configuration
+// port server configuration
 app.set('port', process.env.PORT || 3000);
-app.set('views', path.join(__dirname, 'views'));
-app.engine('ejs', engine);
-app.set('view engine', 'ejs');
 
-//enabling the public folder
+// setting express react engine views
+app.engine('.jsx', engine.server.create());
+app.set('views', path.join(__dirname, 'react-app'));
+app.set('view engine', 'jsx');
+app.set('view', engine.expressView);
+
+// enabling the public folder
 app.use(express.static(path.join(__dirname, 'public')));
 
 // middleware

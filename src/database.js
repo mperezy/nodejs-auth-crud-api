@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const { mongodb } = require('./keys');
+import mongoose from 'mongoose';
+import { mongodb } from './keys';
 
 mongoose.set('useFindAndModify', false);
 mongoose.connect(mongodb.URI, {

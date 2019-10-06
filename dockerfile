@@ -2,6 +2,7 @@ FROM owncloudci/nodejs
 
 WORKDIR /app
 
+COPY .babelrc /app/.babelrc
 COPY package.json /app/package.json
 
 # Updating packages
