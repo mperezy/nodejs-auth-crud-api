@@ -6,7 +6,10 @@ import {
     NavbarBrand,
     NavbarToggler,
     NavItem,
-    NavLink } from 'reactstrap';
+    NavLink,
+    DropdownItem,
+    DropdownMenu,
+} from 'reactstrap';
 
 class Header extends Component {
     constructor(props){
@@ -28,6 +31,36 @@ class Header extends Component {
         return (this.props.title === title) ? true : false;
     }
 
+    isUserAuthenticated(user) {
+        const navClass = 'flex-row ml-md-auto d-none d-md-flex';
+        if(user) {
+            return <Nav className={ navClass } navbar>
+                <NavItem className={'dropdown'} active={ this.isCurrentHome('profile') }>
+                    <NavLink className={'nav-item dropdown-toggle mr-md-2'} href={'#'} data-toggle={'dropdown'}>
+                        { user.firstname } { user.lastname }
+                    </NavLink>
+
+                    <DropdownMenu className={'dropdown-menu-right'}>
+                        <DropdownItem tag={'a'} href={'/profile'} active={ this.isCurrentHome('profile') }>Profile</DropdownItem>
+                        <DropdownItem divider/>
+                        <DropdownItem tag={'a'} href={'/logout'}>Logout</DropdownItem>
+                    </DropdownMenu>
+                </NavItem>
+            </Nav>;
+        }
+        else {
+            return <Nav className={ navClass } navbar>
+                <NavItem active={ this.isCurrentHome('signin') }>
+                    <NavLink href={'/signin'}>Sign In</NavLink>
+                </NavItem>
+
+                <NavItem active={ this.isCurrentHome('signup') }>
+                    <NavLink href={'/signup'}>Sign Up</NavLink>
+                </NavItem>
+            </Nav>;
+        }
+    };
+
     render() {
         return(
             <header>
@@ -39,7 +72,6 @@ class Header extends Component {
 
                     <Collapse isOpen={this.state.isOpen} navbar id={'navbarCollapse'}>
                         <Nav className={'mr-auto'} navbar>
-
                             <NavItem active={ this.isCurrentHome('index') }>
                                 <NavLink href={'/'}>Home</NavLink>
                             </NavItem>
@@ -55,15 +87,7 @@ class Header extends Component {
 
                         <hr/>
 
-                        <Nav className={'ml-md-auto d-md-flex'} navbar>
-                            <NavItem active={ this.isCurrentHome('signin') }>
-                                <NavLink href={'/signin'}>Sign In</NavLink>
-                            </NavItem>
-
-                            <NavItem active={ this.isCurrentHome('signup') }>
-                                <NavLink href={'/signup'}>Sign Up</NavLink>
-                            </NavItem>
-                        </Nav>
+                        { this.isUserAuthenticated( this.props.user ) }
                     </Collapse>
                 </Navbar>
             </header>

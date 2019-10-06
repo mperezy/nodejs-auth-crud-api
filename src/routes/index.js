@@ -20,7 +20,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/signup', (req, res, next) => {
-    res.render('auth/signup', {
+    res.render('components/auth/signup', {
         title: 'signup'
     });
 });
@@ -32,7 +32,7 @@ router.post('/signup', passport.authenticate('local-signup', {
 }));
 
 router.get('/signin', (req, res, next) => {
-    res.render('auth/signin', {
+    res.render('components/auth/signin', {
         title: 'signin'
     });
 });
@@ -58,9 +58,10 @@ router.get('/logout', (req, res, next) => {
 router.get('/dashboard', isAuthenticated, async (req, res) => {
     const tasks = await Task.find({ 'userId': req.user._id });
 
-    res.render('index', {
-        tasks,
-        title: 'dashboard'
+    res.render('components/dashboard', {
+        tasks: tasks,
+        title: 'dashboard',
+        user: req.user
     });
 });
 

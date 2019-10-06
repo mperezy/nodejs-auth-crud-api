@@ -7,7 +7,7 @@ class Index extends Component {
     render() {
         return (
             <Html>
-                <Header title={this.props.title}/>
+                <Header title={ this.props.title } user={ this.props.user }/>
                 <Container>
                     <Jumbotron>
                         <h1>Home</h1>

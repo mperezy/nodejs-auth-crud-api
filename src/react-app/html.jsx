@@ -12,6 +12,8 @@ class Html extends Component {
                     <link rel={'stylesheet'} href={'css/navbar.css'}/>
                     <link rel={'stylesheet'} href={'css/fix-navbar.css'}/>
                     <link rel={'stylesheet'}
+                          href={'https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css'}/>
+                    <link rel={'stylesheet'}
                           href={'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css'}/>
                     <script src={'https://code.jquery.com/jquery-3.4.1.slim.min.js'}></script>
                     <script src={'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'}></script>
