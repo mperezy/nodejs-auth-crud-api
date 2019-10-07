@@ -44,8 +44,9 @@ router.post('/signin', passport.authenticate('local-signin', {
 }));
 
 router.get('/profile', isAuthenticated, (req, res, next) => {
-    res.render('auth/profile', {
-        title: 'profile'
+    res.render('components/auth/profile', {
+        title: 'profile',
+        user: req.user
     });
 });
 
