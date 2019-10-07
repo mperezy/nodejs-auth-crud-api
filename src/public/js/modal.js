@@ -2,6 +2,7 @@ $(document).ready(() => {
     let editButton = $(".editButton");
     let deleteButton = $(".deleteButton");
     let { action, task } = "";
+    console.log('Hello there');
 
     //edit
     let editModal = $("#editModal");
@@ -9,8 +10,8 @@ $(document).ready(() => {
     //delete
     let deleteModal = $("#deleteModal");
 
-    editButton.click(() => {
-        let _this = $(event.target);
+    editButton.click((e) => {
+        let _this = $(e.target);
         action = _this.data("action");
         task = _this.data("task").split("#");
 
@@ -21,8 +22,8 @@ $(document).ready(() => {
         editModal.modal("show");
     });
 
-    deleteButton.click(() => {
-        let _this = $(event.target);
+    deleteButton.click((e) => {
+        let _this = $(e.target);
         action = _this.data("delete");
 
         $("#deleteButtonModal").attr("href", action);

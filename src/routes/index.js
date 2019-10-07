@@ -90,7 +90,10 @@ router.get('/edit/:id', async (req, res, next) => {
 
 router.post('/edit/:id', async (req, res, next) => {
     const { id } = req.params;
-    await Task.update({ _id: id }, req.body);
+    const task = await Task.findById(id);
+    task.title = req.body.titleModal;
+    task.description = req.body.descriptionModal;
+    await task.save();
     res.redirect('/dashboard');
 });
 

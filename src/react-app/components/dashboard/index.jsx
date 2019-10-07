@@ -2,29 +2,47 @@ import React, { Component } from 'react';
 import { Container, Row, Col, Card, CardBody, Form, FormGroup, Input, Button, Table } from 'reactstrap';
 import Header from '../header';
 import Html from '../../html';
+import CustomModal from './modal';
 
 class Dashboard extends Component {
-    fillTable() {
-      const tasks = this.props.tasks;
-      let i = 0;
+    constructor(props) {
+        super(props);
 
-      return tasks.map((task) => {
-          return <tr>
-              <td>{ ++i }</td>
-              <td>{ task.title }</td>
-              <td>{ task.description }</td>
-              <td>
-                  <a className={ task.status ? 'btn btn-success' : 'btn btn-dark' } href={ `/turn/${ task._id }` }>Done</a>
-                  <Button color={'danger'} className={'deleteButton'} data-delete={ `/delete/${ task._id }` }>Delete</Button>
-                  <Button color={'info'} className={'editButton'} data-task={`${ task._id }#${ task.title }#${ task.description }`} data-action={'/edit/'}>Edit</Button>
-              </td>
-          </tr>
+        this.state = {
+            jsScripts: [
+                { src: '/js/modal.js' }
+            ]
+        };
+    }
+
+    fillTable() {
+        const tasks = this.props.tasks;
+        let i = 0;
+
+        return tasks.map((task) => {
+            return <tr>
+                <td>{ ++i }</td>
+                <td>{ task.title }</td>
+                <td>{ task.description }</td>
+                <td>
+                    <a className={ task.status ? 'btn btn-success' : 'btn btn-dark' } href={ `/turn/${ task._id }` }>Done</a> {' '}
+                    <Button color={'danger'}
+                            type={false}
+                            className={'deleteButton'}
+                            data-delete={`/delete/${ task._id }`}>Delete</Button>{' '}
+                    <Button color={'info'}
+                            type={false}
+                            className={'editButton'}
+                            data-task={`${ task._id }#${ task.title }#${ task.description }`}
+                            data-action={'/edit/'}>Edit</Button>
+                </td>
+            </tr>
       });
     };
 
     render() {
         return (
-            <Html>
+            <Html internJsScripts={ this.state.jsScripts }>
                 <main role={'main'} className={'flex-shrink-0'}>
                     <Header title={ this.props.title } user={ this.props.user }/>
 
@@ -37,7 +55,7 @@ class Dashboard extends Component {
 
                     <Container>
                         <Row>
-                            <Col md={'5'}>
+                            <Col md={'4'}>
                                 <Card>
                                     <CardBody>
                                         <Form action={'/add'} method={'POST'}>
@@ -54,7 +72,7 @@ class Dashboard extends Component {
                                     </CardBody>
                                 </Card>
                             </Col>
-                            <Col md={'7'}>
+                            <Col md={'8'}>
                                 <Table bordered hover>
                                     <thead>
                                         <tr>
@@ -72,6 +90,8 @@ class Dashboard extends Component {
                         </Row>
                     </Container>
                 </main>
+                <CustomModal modalType={'deleteModal'} modalTitle={'Delete task'}/>
+                <CustomModal modalType={'editModal'} modalTitle={'Update task'}/>
             </Html>
         );
     }

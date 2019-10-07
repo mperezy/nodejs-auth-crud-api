@@ -32,7 +32,7 @@ class Header extends Component {
     }
 
     isUserAuthenticated(user) {
-        const navClass = 'flex-row ml-md-auto d-none d-md-flex';
+        const navClass = 'ml-md-auto d-md-flex';
         if(user) {
             return <Nav className={ navClass } navbar>
                 <NavItem className={'dropdown'} active={ this.isCurrentHome('profile') }>

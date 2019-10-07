@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 
 class Html extends Component {
+    renderJsScripts() {
+        const scripts = this.props.internJsScripts;
+        let i = 0;
+
+        if(scripts) {
+            return scripts.map((script) => {
+                return <script type={'text/javascript'} src={script.src}></script>
+            });
+        }
+    }
+
     render() {
         return(
             <html>
@@ -17,6 +28,7 @@ class Html extends Component {
                           href={'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css'}/>
                     <script src={'https://code.jquery.com/jquery-3.4.1.slim.min.js'}></script>
                     <script src={'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'}></script>
+                    { this.renderJsScripts() }
                 </head>
                 <body className={'d-flex flex-column h-100'}>
                     { this.props.children }
