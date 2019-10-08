@@ -3,6 +3,7 @@ import { Container, Row, Col, Card, CardBody, Form, FormGroup, Input, Button, Ta
 import Header from '../header';
 import Html from '../../html';
 import CustomModal from './modal';
+import Flash from "../auth/flash";
 
 class Dashboard extends Component {
     constructor(props) {
@@ -41,10 +42,23 @@ class Dashboard extends Component {
     };
 
     render() {
+        const renderFlash = () => {
+            if(this.props.signupMessage.length > 0) {
+                return <Flash alertType={ this.props.signupMessage + '' }/>;
+            }
+            else if(this.props.signinMessage.length > 0) {
+                return <Flash alertType={ this.props.signinMessage + '' }/>;
+            } else {
+                return '';
+            }
+        };
+
         return (
             <Html internJsScripts={ this.state.jsScripts }>
                 <main role={'main'} className={'flex-shrink-0'}>
                     <Header title={ this.props.title } user={ this.props.user }/>
+
+                    { renderFlash() }
 
                     <Container>
                         <h1 className={'mt-5'}>Hello there <b>{ this.props.user.firstname }</b></h1>
@@ -72,6 +86,7 @@ class Dashboard extends Component {
                                     </CardBody>
                                 </Card>
                             </Col>
+                            <br/>
                             <Col md={'8'}>
                                 <Table bordered hover>
                                     <thead>

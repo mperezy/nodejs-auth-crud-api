@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import Html from '../../../html';
 import Header from '../../header';
+import Flash from '../flash';
 import { Button, Form, FormGroup, InputGroup, Input, InputGroupAddon } from 'reactstrap';
 
 class SignIn extends Component {
     render() {
+        const renderFlash = () => {
+            if(this.props.signinMessage.length > 0) return <Flash alertType={ this.props.signinMessage + '' }/>;
+        };
+
         return (
             <Html>
                 <Header title={ this.props.title }/>
@@ -13,6 +18,8 @@ class SignIn extends Component {
                         <img src={'img/nodejs.jpg'} alt={''} width={'200'} className={'mb-4'}/>
                         <h1 className={'h3 mb-3 font-weight-normal'}>NodeJs Authentication - Sign In</h1>
                     </div>
+
+                    { renderFlash() }
 
                     <FormGroup>
                         <label htmlFor={'email'} className={'col-sm-2 col-form-label'}>Email</label>
