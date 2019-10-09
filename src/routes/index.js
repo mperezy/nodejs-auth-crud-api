@@ -20,9 +20,13 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/signup', (req, res, next) => {
-    res.render('components/auth/signup', {
-        title: 'signup'
-    });
+    if(!req.isAuthenticated()) {
+        res.render('components/auth/signup', {
+            title: 'signup'
+        });
+    } else {
+        res.redirect('/dashboard');
+    }
 });
 
 router.post('/signup', passport.authenticate('local-signup', {
@@ -32,9 +36,13 @@ router.post('/signup', passport.authenticate('local-signup', {
 }));
 
 router.get('/signin', (req, res, next) => {
-    res.render('components/auth/signin', {
-        title: 'signin'
-    });
+    if(!req.isAuthenticated()) {
+        res.render('components/auth/signin', {
+            title: 'signin'
+        });
+    } else {
+        res.redirect('/dashboard');
+    }
 });
 
 router.post('/signin', passport.authenticate('local-signin', {
