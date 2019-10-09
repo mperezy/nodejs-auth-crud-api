@@ -1,4 +1,6 @@
 $(document).ready(() => {
+    $('#react-engine-props').remove();
+
     let editButton = $(".editButton");
     let deleteButton = $(".deleteButton");
     let { action, task } = "";
